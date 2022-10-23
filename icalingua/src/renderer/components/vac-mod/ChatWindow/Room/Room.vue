@@ -601,8 +601,14 @@ export default {
                         } else if (e.shiftKey) {
                             setTimeout(() => this.onChangeInput(), 0)
                         } else {
-                            this.sendMessage()
-                            e.preventDefault()
+                            let msg = this.message.trim()
+                            setTimeout(() => {
+                                let $msg = this.message = this.message.trim()
+                                if (msg === $msg) {
+                                    this.sendMessage()
+                                    e.preventDefault()
+                                }
+                            }, 1)
                         }
                         break
                     case 'CtrlEnter':
